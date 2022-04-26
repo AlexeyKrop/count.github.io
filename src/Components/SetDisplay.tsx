@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Input from "./Input";
 
 const displaySettings = {
@@ -10,13 +10,17 @@ const displaySettings = {
 type setDisplayProps = {
   getStartValue: (value: number) => void
   getMaxValue: (value: number) => void
+  startValue: number
+  maxValue: number
+  error: string
 }
 const SetDisplay = (props: setDisplayProps) => {
   return (
     <div style={displaySettings}>
-      <div className='counter__settings'><span>max value:</span> <Input callBack={props.getMaxValue} type={'number'}/>
+      <span className={'spanError'}>{props.error}</span>
+      <div className='counter__settings'><span>max value:</span> <Input className={props.startValue > props.maxValue ? 'inputError': ''} value={props.maxValue}  callBack={props.getMaxValue} type={'number'}/>
       </div>
-      <div className='counter__settings'><span>start value:</span> <Input callBack={props.getStartValue} type={'number'}/>
+      <div className='counter__settings'><span>start value:</span> <Input className={props.startValue > props.maxValue ? 'inputError': ''}  value={props.startValue} callBack={props.getStartValue} type={'number'}/>
       </div>
     </div>
   );

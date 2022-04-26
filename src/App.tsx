@@ -8,11 +8,23 @@ function App() {
   const [startValue, setStartValue] = useState(0)
   const [maxValue, setMaxValue] = useState(0)
   let [count, setCount] = useState(startValue);
+  let [error, setError] = useState('')
   const getStartValue = (value: number) => {
-    setStartValue(value)
+    if (value > 0) {
+      setStartValue(value)
+      setError('')
+    } else {
+      setError('enter a number greater than zero')
+    }
   }
   const getMaxValue = (value: number) => {
-    setMaxValue(value)
+    if (value > 0) {
+      setMaxValue(value)
+      setError('')
+    } else {
+      setError('enter a number greater than zero')
+    }
+
   }
   const getCounterIncrement = () => {
     if (count === maxValue) {
@@ -23,9 +35,12 @@ function App() {
   }
   const getResetICount = () => {
     setCount(0);
+
   }
   const onClickSetValue = () => {
-    setCount(startValue)
+    if (startValue < maxValue) {
+      setCount(startValue)
+    }
   }
   return (
     <div className="App">
@@ -38,9 +53,10 @@ function App() {
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
-          <SetDisplay getStartValue={getStartValue} getMaxValue={getMaxValue}/>
+          <SetDisplay error={error} maxValue={maxValue} startValue={startValue} getStartValue={getStartValue}
+                      getMaxValue={getMaxValue}/>
           <div className="button__group button__group_settings">
-            <Button name={'Set'} callBack={onClickSetValue}/>
+            <Button disabled={startValue > maxValue} name={'Set'} callBack={onClickSetValue}/>
           </div>
         </div>
       </div>
