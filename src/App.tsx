@@ -5,11 +5,9 @@ import Button from "./Components/Button";
 import SetDisplay from "./Components/SetDisplay";
 
 function App() {
-  const maxCount = 5;
-  const minCount = 0;
-  let [count, setCount] = useState(minCount);
   const [startValue, setStartValue] = useState(0)
   const [maxValue, setMaxValue] = useState(0)
+  let [count, setCount] = useState(startValue);
   const getStartValue = (value: number) => {
     setStartValue(value)
   }
@@ -17,7 +15,7 @@ function App() {
     setMaxValue(value)
   }
   const getCounterIncrement = () => {
-    if (count === maxCount) {
+    if (count === maxValue) {
       count = 0;
       setCount(count);
     }
@@ -33,10 +31,10 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="wrapper-counter">
-          <Display maxCount={maxCount} count={count}/>
+          <Display maxCount={maxValue} count={count}/>
           <div className="button__group">
-            <Button disabled={count === maxCount} name={'Inc'} callBack={getCounterIncrement}/>
-            <Button disabled={count === minCount} name={'Reset'} callBack={getResetICount}/>
+            <Button disabled={count === maxValue} name={'Inc'} callBack={getCounterIncrement}/>
+            <Button disabled={count === startValue} name={'Reset'} callBack={getResetICount}/>
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
