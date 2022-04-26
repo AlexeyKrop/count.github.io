@@ -1,7 +1,13 @@
 import React from 'react';
+
 const display = {
   width: '100%',
   minHeight: '100px',
+}
+const counter = {
+  width: '90%',
+  margin: "0 auto",
+  border: '4px solid grey',
   fontSize: '90px',
   fontWeight: 'bold'
 }
@@ -9,7 +15,7 @@ const styleIfCountOff = {
   color: 'red',
 }
 const styleIfCountReset = {
-  color: 'black',
+  color: 'white',
 }
 type displayPropsType = {
   count: number
@@ -18,7 +24,9 @@ type displayPropsType = {
 const Display: React.FC<displayPropsType> = (props) => {
   return (
     <div style={display}>
-      <span style={props.count === props.maxCount ? styleIfCountOff : styleIfCountReset}>{props.count}</span>
+      <div style={counter}>
+        <span style={props.count === props.maxCount ? styleIfCountOff : styleIfCountReset}>{props.count}</span>
+      </div>
     </div>
   );
 };

@@ -7,8 +7,9 @@ function App() {
   const maxCount = 5;
   const minCount = 0;
   let [count, setCount] = useState(minCount);
+  const [countValue, setCountValue] = useState('')
   const getCounterIncrement = () => {
-    if (count >= maxCount) {
+    if (count === maxCount) {
       count = 0;
       setCount(count);
     }
@@ -20,12 +21,15 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="wrapper">
+        <div className="wrapper-counter">
           <Display maxCount={maxCount} count={count}/>
           <div className="button__group">
             <Button disabled={count === maxCount} name={'Inc'} callBack={getCounterIncrement}/>
             <Button disabled={count === minCount} name={'Reset'} callBack={getResetICount}/>
           </div>
+        </div>
+        <div className="wrapper-counter wrapper-counter__setting">
+
         </div>
       </div>
     </div>
