@@ -10,7 +10,7 @@ function App() {
   let [count, setCount] = useState(startValue);
   let [error, setError] = useState('')
   const getStartValue = (value: number) => {
-    if (value > 0) {
+    if (value >= 0) {
       setStartValue(value)
       setError('')
     } else {
@@ -18,7 +18,7 @@ function App() {
     }
   }
   const getMaxValue = (value: number) => {
-    if (value > 0) {
+    if (value >= 0) {
       setMaxValue(value)
       setError('')
     } else {
@@ -28,13 +28,13 @@ function App() {
   }
   const getCounterIncrement = () => {
     if (count === maxValue) {
-      count = 0;
+      count = startValue;
       setCount(count);
     }
     setCount(++count);
   }
   const getResetICount = () => {
-    setCount(0);
+    setCount(startValue);
 
   }
   const onClickSetValue = () => {
