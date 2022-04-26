@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Display from "./Components/Display";
 import Button from "./Components/Button";
+import SetDisplay from "./Components/SetDisplay";
 
 function App() {
   const maxCount = 5;
@@ -29,7 +30,11 @@ function App() {
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
-
+          <SetDisplay/>
+          <div className="button__group button__group_settings">
+            <Button name={'Set'} callBack={() => {
+            }}/>
+          </div>
         </div>
       </div>
     </div>
