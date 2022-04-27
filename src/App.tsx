@@ -9,26 +9,27 @@ function App() {
   const [maxValue, setMaxValue] = useState(0)
   let [count, setCount] = useState(startValue);
   let [error, setError] = useState('')
+  console.log(error)
   useEffect(() => {
     let startValueForString = localStorage.getItem('startValue')
-    if(startValueForString){
+    if (startValueForString) {
       let newStartValue = JSON.parse(startValueForString)
       setStartValue(newStartValue)
     }
-  },[])
+  }, [])
   useEffect(() => {
     let maxValueForString = localStorage.getItem('maxValue')
-    if(maxValueForString){
+    if (maxValueForString) {
       let newMaxValue = JSON.parse(maxValueForString)
       setMaxValue(newMaxValue)
     }
-  },[])
+  }, [])
   const getStartValue = (value: number) => {
     if (value >= 0) {
       setStartValue(value)
       setError('')
     } else {
-      setError('enter a number greater than zero')
+      setError('StartValue not valid')
     }
   }
   const getMaxValue = (value: number) => {
@@ -36,9 +37,8 @@ function App() {
       setMaxValue(value)
       setError('')
     } else {
-      setError('enter a number greater than zero')
+      setError('MaxValue not valid')
     }
-
   }
   const getCounterIncrement = () => {
     if (count === maxValue) {
@@ -62,14 +62,14 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="wrapper-counter">
-          <Display maxCount={maxValue} count={count}/>
+          <Display error={error} maxCount={maxValue} count={count}/>
           <div className="button__group">
             <Button disabled={count === maxValue} name={'Inc'} callBack={getCounterIncrement}/>
             <Button disabled={count === startValue} name={'Reset'} callBack={getResetICount}/>
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
-          <SetDisplay error={error} maxValue={maxValue} startValue={startValue} getStartValue={getStartValue}
+          <SetDisplay maxValue={maxValue} startValue={startValue} getStartValue={getStartValue}
                       getMaxValue={getMaxValue}/>
           <div className="button__group button__group_settings">
             <Button disabled={startValue > maxValue} name={'Set'} callBack={onClickSetValue}/>
