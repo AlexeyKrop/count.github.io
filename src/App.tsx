@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Display from "./Components/Display";
 import Button from "./Components/Button";
@@ -9,6 +9,20 @@ function App() {
   const [maxValue, setMaxValue] = useState(0)
   let [count, setCount] = useState(startValue);
   let [error, setError] = useState('')
+  useEffect(() => {
+    let startValueForString = localStorage.getItem('startValue')
+    if(startValueForString){
+      let newStartValue = JSON.parse(startValueForString)
+      setStartValue(newStartValue)
+    }
+  },[])
+  useEffect(() => {
+    let maxValueForString = localStorage.getItem('maxValue')
+    if(maxValueForString){
+      let newMaxValue = JSON.parse(maxValueForString)
+      setMaxValue(newMaxValue)
+    }
+  },[])
   const getStartValue = (value: number) => {
     if (value >= 0) {
       setStartValue(value)
@@ -39,6 +53,8 @@ function App() {
   }
   const onClickSetValue = () => {
     if (startValue < maxValue) {
+      localStorage.setItem('startValue', JSON.stringify(startValue))
+      localStorage.setItem('maxValue', JSON.stringify(maxValue))
       setCount(startValue)
     }
   }
