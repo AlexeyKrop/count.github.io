@@ -57,19 +57,25 @@ function App() {
       setCount(startValue)
     }
   }
+  const checkValue = () => {
+    if(maxValue < startValue){
+      setError('startValue is not valid')
+    }
+  }
   return (
     <div className="App">
       <div className="container">
         <div className="wrapper-counter">
           <Display error={error} maxCount={maxValue} count={count}/>
           <div className="button__group">
-            <Button disabled={count === maxValue} name={'Inc'} callBack={getCounterIncrement}/>
-            <Button disabled={count === startValue} name={'Reset'} callBack={getResetICount}/>
+            <Button disabled={count === maxValue || maxValue < startValue} name={'Inc'} callBack={getCounterIncrement}/>
+            <Button disabled={count === startValue || maxValue < startValue} name={'Reset'} callBack={getResetICount}/>
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
           <SetDisplay maxValue={maxValue} startValue={startValue} getStartValue={getStartValue}
-                      getMaxValue={getMaxValue}/>
+                      getMaxValue={getMaxValue}
+                      checkValue={checkValue}/>
           <div className="button__group button__group_settings">
             <Button disabled={startValue >= maxValue} name={'Set'} callBack={onClickSetValue}/>
           </div>
