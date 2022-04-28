@@ -49,7 +49,6 @@ function App() {
   }
   const getResetICount = () => {
     setCount(startValue);
-
   }
   const onClickSetValue = () => {
     if (startValue < maxValue) {
@@ -72,7 +71,7 @@ function App() {
           <SetDisplay maxValue={maxValue} startValue={startValue} getStartValue={getStartValue}
                       getMaxValue={getMaxValue}/>
           <div className="button__group button__group_settings">
-            <Button disabled={startValue > maxValue} name={'Set'} callBack={onClickSetValue}/>
+            <Button disabled={startValue >= maxValue} name={'Set'} callBack={onClickSetValue}/>
           </div>
         </div>
       </div>
