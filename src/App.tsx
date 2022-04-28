@@ -9,7 +9,6 @@ function App() {
   const [maxValue, setMaxValue] = useState(0)
   let [count, setCount] = useState(startValue);
   let [error, setError] = useState('')
-  console.log(error)
   useEffect(() => {
     let startValueForString = localStorage.getItem('startValue')
     if (startValueForString) {
