@@ -43,10 +43,7 @@ function App() {
   const getCounterIncrement = () => {
     setCount(++count);
     if (count === maxValue) {
-      console.log(count)
       setDisabled(true)
-      // count = startValue;
-      // setCount(count);
     }
   }
   const getResetICount = () => {
@@ -54,11 +51,8 @@ function App() {
     setCount(startValue);
   }
   const onClickSetValue = () => {
-    setDisabled(false)
-    // if(count === maxValue || maxValue < startValue){
-    //   setDisabled(false)
-    // }
     if (startValue < maxValue) {
+      setDisabled(false)
       localStorage.setItem('startValue', JSON.stringify(startValue))
       localStorage.setItem('maxValue', JSON.stringify(maxValue))
       setCount(startValue)
@@ -75,7 +69,6 @@ function App() {
         <div className="wrapper-counter">
           <Display error={error} maxCount={maxValue} count={count}/>
           <div className="button__group">
-            {/*count === maxValue || maxValue < startValue*/}
             <Button disabled={disabled} name={'Inc'} callBack={getCounterIncrement}/>
             <Button disabled={count === startValue || maxValue < startValue} name={'Reset'} callBack={getResetICount}/>
           </div>
