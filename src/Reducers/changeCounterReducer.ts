@@ -22,9 +22,9 @@ const increaseCountAC = (newCount: number) => {
     count:newCount
   }
 }
-const resetCountAC = () => {
+const resetCountAC = (newCount: number) => {
   return{
     type: 'INCREASE_COUNT',
-    count: 0
+    count: newCount
   }
 }
