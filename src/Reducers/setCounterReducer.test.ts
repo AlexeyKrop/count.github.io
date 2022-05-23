@@ -1,4 +1,4 @@
-import {inputMaxValueAC, setCounterReducer} from "./setCounterReducer";
+import { setCounterReducer} from "./setCounterReducer";
 
 test('check add maxValue and startValue', ()=>{
   const startState = 0
